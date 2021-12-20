@@ -1,0 +1,32 @@
+import socket
+
+ClientSocket = socket.socket()
+host = '192.168.56.103'
+port = 8888  # CHANGE
+
+print('Waiting for connection')
+try:
+    ClientSocket.connect((host, port))
+except socket.error as e:
+    print(str(e))
+
+Response = ClientSocket.recv(1024)
+print(Response.decode("utf-8"))
+while True:
+    a = input('Insert the value for A: ')
+    b = input('Insert the value for B: ')
+
+    print('Insert the arithmetic operation')
+    operator = input()
+
+    message = ",".join([a, b, operator])
+    print('Message being send to server: ' + message + "\n")
+
+    if message == 'exit':
+        break
+    else:
+        ClientSocket.send(message.encode('utf-8'))
+        Response = ClientSocket.recv(1024)
+        print(Response.decode("utf-8"))
+
+ClientSocket.close()
