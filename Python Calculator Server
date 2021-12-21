@@ -51,7 +51,7 @@ def process_start(s_sock):
 
 if __name__ == '__main__':
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.bind(('192.168.56.103', 8888))  #change depending on which you use
+    s.bind(('192.168.56.103', 8888))  #change depending on which server 
     print("listening...")
     s.listen(28)  # AND THIS TOO
 
